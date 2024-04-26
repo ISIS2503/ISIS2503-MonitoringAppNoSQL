@@ -64,6 +64,7 @@ def createPlace(data):
     place.id = places_collection.insert(
         {
             'name': place.name,
+            'critical': place.critical,
             'measurements': place.measurements
         }
     )
