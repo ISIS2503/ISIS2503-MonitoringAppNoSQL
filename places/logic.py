@@ -167,8 +167,20 @@ def get_average(place_id, data):
 
     client = MongoClient(settings.MONGO_CLI)
     db = client.monitoring_db
-    places_collection = db['places']
-    place = Place.from_mongo(places_collection.find_one({'_id': ObjectId(place_id)}))
+
+    # Check first critical places
+    places_collection = db['criticalPlaces']
+    place = places_collection.find_one({'_id': ObjectId(place_id)})
+
+    # If not found, check normal places
+    if place is None:
+        places_collection = db['places']
+        place = places_collection.find_one({'_id': ObjectId(place_id)})
+    
+    if place is None:
+        raise ValueError('Place not found')
+    
+    place = Place.from_mongo(place)
 
     # Obtener nombre de la variable
     variables_collection = db['variables']
