@@ -28,7 +28,7 @@ def getPlace(id):
     client = MongoClient(settings.MONGO_CLI)
     db = client.monitoring_db
 
-    places_collection = db['critialPlaces']
+    places_collection = db['criticalPlaces']
     place = places_collection.find_one({'_id': ObjectId(id)})
 
     if place is None:
