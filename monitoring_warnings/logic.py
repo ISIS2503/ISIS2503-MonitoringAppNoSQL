@@ -53,8 +53,15 @@ def createWarning(data):
     db = client.monitoring_db
 
     # Verify place exists
-    places_collection = db['places']
-    place = places_collection.find_one({'_id': ObjectId(warning.place_id)})
+    # Check first critical places
+    places_collection = db['criticalPlaces']
+    place = places_collection.find_one({'_id': ObjectId(place_id)})
+
+    # If not found, check normal places
+    if place is None:
+        places_collection = db['places']
+        place = places_collection.find_one({'_id': ObjectId(place_id)})
+
     if place is None:
         raise ValueError('Place not found')
 
