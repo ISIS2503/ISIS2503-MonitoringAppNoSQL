@@ -55,12 +55,12 @@ def createWarning(data):
     # Verify place exists
     # Check first critical places
     places_collection = db['criticalPlaces']
-    place = places_collection.find_one({'_id': ObjectId(place_id)})
+    place = places_collection.find_one({'_id': ObjectId(warning.place_id)})
 
     # If not found, check normal places
     if place is None:
         places_collection = db['places']
-        place = places_collection.find_one({'_id': ObjectId(place_id)})
+        place = places_collection.find_one({'_id': ObjectId(warning.place_id)})
 
     if place is None:
         raise ValueError('Place not found')
