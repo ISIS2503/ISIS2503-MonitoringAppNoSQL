@@ -46,7 +46,7 @@ def createVariable(data):
     client = MongoClient(settings.MONGO_CLI)
     db = client.monitoring_db
     variables_collection = db['variables']
-    variable.id = variables_collection.insert(
+    variable.id = variables_collection.insert_one(
         {
             'name': variable.name,
             'min_threshold': variable.min_threshold,
@@ -72,7 +72,7 @@ def updateVariable(id, data):
     client = MongoClient(settings.MONGO_CLI)
     db = client.monitoring_db
     variables_collection = db['variables']
-    result = variables_collection.update(
+    result = variables_collection.update_one(
         {'_id': ObjectId(id)},
         {'$set': {
             'name': variable.name,

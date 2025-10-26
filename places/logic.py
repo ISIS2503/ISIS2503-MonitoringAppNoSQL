@@ -61,7 +61,7 @@ def createPlace(data):
     client = MongoClient(settings.MONGO_CLI)
     db = client.monitoring_db
     places_collection = db['places'] if not place.critical else db['criticalPlaces']
-    place.id = places_collection.insert(
+    place.id = places_collection.insert_one(
         {
             'name': place.name,
             'critical': place.critical,
