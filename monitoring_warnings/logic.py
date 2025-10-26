@@ -60,7 +60,7 @@ def createWarning(data):
 
     # Create warning in MongoDB
     warnings_collection = db['warnings']
-    warning.id = warnings_collection.insert(
+    warning.id = warnings_collection.insert_one(
         {
             'place_id': warning.place_id,
             'datetime': warning.datetime

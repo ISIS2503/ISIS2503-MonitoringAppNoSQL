@@ -44,7 +44,7 @@ def createPlace(data):
     client = MongoClient(settings.MONGO_CLI)
     db = client.monitoring_db
     places_collection = db['places']
-    place.id = places_collection.insert(
+    place.id = places_collection.insert_one(
         {
             'name': place.name,
             'measurements': place.measurements
