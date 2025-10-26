@@ -1,8 +1,8 @@
-from django.conf.urls import url, include
+from django.urls import path
 
 from variables.views import *
 
 urlpatterns = [
-    url(r'^variables/$', variables),
-    url(r'^variables/(?P<pk>\w+)/$', variablesDetail)
+    path('variables/', variables),
+    path('variables/<pk>/', variablesDetail)
 ]
