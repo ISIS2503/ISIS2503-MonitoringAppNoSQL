@@ -1,9 +1,9 @@
-from django.conf.urls import url, include
+from django.urls import path
 
 from .views import *
 
 urlpatterns = [
-    url(r'^warnings/$', warnings),
-    url(r'^warnings/(?P<pk>\w+)/$', warningDetail),
-    url(r'^warningsFilter/$', warningsFilter),
+    path('warnings/', warnings),
+    path('warnings/<pk>/', warningDetail),
+    path('warningsFilter/', warningsFilter),
 ]
